@@ -3,7 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 // gets information about current user
 import { getAuth } from 'firebase'; 
-// The data base we retrive from write to etc
+// The database we retrieve from write to etc
 import { getFireStore } from 'firebase/firestore';
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -11,13 +11,13 @@ import { getFireStore } from 'firebase/firestore';
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyC91XmPxxVUM-Gsx7XJWfqbQiuxlaom7DA",
-    authDomain: "talking-points-98151.firebaseapp.com",
-    projectId: "talking-points-98151",
-    storageBucket: "talking-points-98151.appspot.com",
-    messagingSenderId: "1053776153568",
-    appId: "1:1053776153568:web:49bd078022709f421fb985",
-    measurementId: "G-4R6221V7GQ"
+    apiKey: process.env.NEXT_PUBLIC_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_APP_ID,
+    measurementId: process.env.NEXT_PUBLIC_MEASUREMENT_ID
 };
 
 // Initialize Firebase
@@ -26,3 +26,4 @@ const analytics = getAnalytics(app);
 
 // invoking the import statement
 export const auth = getAuth();
+export const db = getFireStore(app);
