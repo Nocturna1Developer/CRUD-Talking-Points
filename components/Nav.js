@@ -12,7 +12,9 @@ export default function Nav() {
     return (
         <nav className="flex justify-between items-center py-10">
             <Link href="/">
-                <button className="py-100 my-12 text-3xl text-center">~~TALKING POINTS!~~</button>
+                <button style={{ width: 170, justifyContent: 'center' }}>
+                    <text style={{ color: 'black' }}> TALKING POINTS! </text>
+                </button>
             </Link>
             <ul className="flex items-center gap-20">
                 {!user && (
@@ -39,6 +41,6 @@ export default function Nav() {
                     </div>
                 )}
             </ul>
-        </nav>
+        </nav >
     );
 }

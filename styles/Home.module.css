@@ -16,7 +16,7 @@
   display: flex;
   flex: 1;
   padding: 2rem 0;
-  border-top: 1px solid #eaeaea;
+  border-top: 1px solid #030303;
   justify-content: center;
   align-items: center;
 }
@@ -41,7 +41,7 @@
 
 .title {
   margin: 0;
-  line-height: 1.15;
+  line-height: .15;
   font-size: 4rem;
 }
 
@@ -57,7 +57,7 @@
 }
 
 .code {
-  background: #fafafa;
+  background: #050505;
   border-radius: 5px;
   padding: 0.75rem;
   font-size: 1.1rem;
