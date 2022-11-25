@@ -14,9 +14,7 @@ import {
     updateDoc,
 } from "firebase/firestore";
 
-// Dynamic page - no matter the URL, it will always come back here
 export default function Details() {
-
     const router = useRouter();
     const routeData = router.query;
     const [message, setMessage] = useState("");
@@ -35,8 +33,6 @@ export default function Details() {
             });
             return;
         }
-
-        // creates a array of comments on the web page
         const docRef = doc(db, "posts", routeData.id);
         await updateDoc(docRef, {
             comments: arrayUnion({
@@ -49,7 +45,7 @@ export default function Details() {
         setMessage("");
     };
 
-    // Get replies and updates in realtime
+    //Get Comments
     const getComments = async () => {
         const docRef = doc(db, "posts", routeData.id);
         const unsubscribe = onSnapshot(docRef, (snapshot) => {
@@ -62,28 +58,26 @@ export default function Details() {
         if (!router.isReady) return;
         getComments();
     }, [router.isReady]);
-
-
     // If you click on a individual comment you can see all the replies to that comment, like a dropdown menu but it instead goes to a new page
     return (
         <div>
             <Message {...routeData}></Message>
-
             <div className="my-4">
                 <div className="flex">
                     <input
                         onChange={(e) => setMessage(e.target.value)}
                         type="text"
                         value={message}
-                        placeholder="Send a message!"
-                        className="bg-gray-800 w-full p-2 text-white text-sm" />
+                        placeholder="Send a message 😀"
+                        className="bg-gray-800 w-full p-2 text-white text-sm"
+                    />
                     <button
                         onClick={submitMessage}
-                        className="bg-cyan-500 text-white py-2 px-4 text-sm">
+                        className="bg-cyan-500 text-white py-2 px-4 text-sm"
+                    >
                         Submit
                     </button>
                 </div>
-
                 <div className="py-6">
                     <h2 className="font-bold">Comments</h2>
                     {allMessage?.map((message) => (
@@ -100,7 +94,6 @@ export default function Details() {
                         </div>
                     ))}
                 </div>
-
             </div>
         </div>
     );

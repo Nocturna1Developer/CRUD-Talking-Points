@@ -10,9 +10,9 @@ export default function Nav() {
     const [user, loading] = useAuthState(auth);
 
     return (
-        <nav className="flex justify-between items-center py-10 gap-10">
+        <nav className="flex justify-between items-center py-10">
             <Link href="/">
-                <button className="padding: 10px 60px py-100 my-12 text-3xl text-center">~~TALKING POINTS!~~</button>
+                <button className="py-100 my-12 text-3xl text-center">~~TALKING POINTS!~~</button>
             </Link>
             <ul className="flex items-center gap-20">
                 {!user && (
