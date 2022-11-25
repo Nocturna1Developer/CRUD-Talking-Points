@@ -28,6 +28,7 @@ export default function Home() {
     getPosts();
   }, []);
 
+  // Returns the comments of other users
   return (
     <div>
       <Head>
@@ -37,16 +38,17 @@ export default function Home() {
       </Head>
 
       <div className="my-12 text-lg font-medium">
-        <h2 className="text-2xl text-center">Check out the ongoing conversation!</h2>
-        {allPosts.map(post =>
-          <Message {...post}>
+        <h2 className="text-center text-3xl font-bold">See what other people are saying!</h2>
+        {allPosts.map((post) => (
+          <Message key={post.id} {...post}>
+            <Link href={{ pathname: `/${post.id}`, query: { ...post } }}>
+              <button>
+                {post.comments?.length > 0 ? post.comments?.length : 0} Replies
+              </button>
+            </Link>
           </Message>
-        )}
+        ))}
       </div>
-
-      <footer>
-
-      </footer>
     </div>
   );
 }

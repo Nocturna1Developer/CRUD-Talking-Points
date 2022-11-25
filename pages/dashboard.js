@@ -29,7 +29,7 @@ export default function Dashboard() {
         return unsubscribe;
     };
 
-    // *Delete Post (references the document in cloud firestore) must need a collection before document is made
+    // Delete Post (references the document in cloud firestore) must need a collection before document is made
     const deletePost = async (id) => {
         const docRef = doc(db, 'posts', id);
         await deleteDoc(docRef); // comes from import statement
@@ -40,10 +40,9 @@ export default function Dashboard() {
         getData();
     }, [user, loading]);
 
-    // ! logout not working for some reason check time stamp 52:51
     return (
         <div>
-            <h1 className="text-lg my-2 text-center">Your talking points!</h1>
+            <h1 className="my-2 text-center text-center text-3xl font-bold">Your talking points!</h1>
             <div>
                 {posts.map((post) => {
                     return (
