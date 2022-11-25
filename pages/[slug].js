@@ -22,7 +22,47 @@ export default function Details() {
     const [message, setMessage] = useState("");
     const [allMessage, setAllMessages] = useState([]);
 
-    
+    //Submit a message
+    const submitMessage = async () => {
+        //Check if the user is logged
+        if (!auth.currentUser) return router.push("/auth/login");
+
+        if (!message) {
+            console.log(message);
+            toast.error("Don't leave an empty message 😅", {
+                position: toast.POSITION.TOP_CENTER,
+                autoClose: 1500,
+            });
+            return;
+        }
+
+        // creates a array of comments on the web page
+        const docRef = doc(db, "posts", routeData.id);
+        await updateDoc(docRef, {
+            comments: arrayUnion({
+                message,
+                avatar: auth.currentUser.photoURL,
+                userName: auth.currentUser.displayName,
+                time: Timestamp.now(),
+            }),
+        });
+        setMessage("");
+    };
+
+    // Get replies and updates in realtime
+    const getComments = async () => {
+        const docRef = doc(db, "posts", routeData.id);
+        const unsubscribe = onSnapshot(docRef, (snapshot) => {
+            setAllMessages(snapshot.data().comments);
+        });
+        return unsubscribe;
+    };
+
+    useEffect(() => {
+        if (!router.isReady) return;
+        getComments();
+    }, [router.isReady]);
+
 
     // If you click on a individual comment you can see all the replies to that comment, like a dropdown menu but it instead goes to a new page
     return (

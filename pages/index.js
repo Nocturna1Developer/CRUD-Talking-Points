@@ -28,7 +28,8 @@ export default function Home() {
     getPosts();
   }, []);
 
-  // Returns the comments of other users
+  // Returns the replies of other users, and shows how many replies there are
+  // the "?" prevents the webpage from displaying an error since all replies are 0 initially
   return (
     <div>
       <Head>
@@ -38,7 +39,8 @@ export default function Home() {
       </Head>
 
       <div className="my-12 text-lg font-medium">
-        <h2 className="text-center text-3xl font-bold">See what other people are saying!</h2>
+        <h2 className="text-center text-4xl font-bold">Topic of the day</h2>
+        <h2 className="my-4 text-center text-2xl">Video games!</h2>
         {allPosts.map((post) => (
           <Message key={post.id} {...post}>
             <Link href={{ pathname: `/${post.id}`, query: { ...post } }}>
